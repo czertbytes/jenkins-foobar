@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Deploy Staging') {
             when {
-                branch 'release/*'
+                branch 'release\/.*'
             }
             input {
                 message "Should we deploy to Staging?"
@@ -38,7 +38,7 @@ pipeline {
         }
         stage('Deploy Production') {
             when {
-                branch 'release/*'
+                branch 'release\/.*'
             }
             input {
                 message "Should we deploy to Production?"
