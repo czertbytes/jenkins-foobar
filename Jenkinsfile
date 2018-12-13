@@ -28,7 +28,7 @@ pipeline {
             when {
                 expression {
                     GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim().tokenize('/')
-                    return !(GIT_BRANCH == 'release')
+                    return (GIT_BRANCH == 'release')
                 }
             }
             input {
@@ -43,7 +43,7 @@ pipeline {
             when {
                 expression {
                     GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim().tokenize('/')
-                    return !(GIT_BRANCH == 'release')
+                    return (GIT_BRANCH == 'release')
                 }
             }
             input {
