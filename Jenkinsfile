@@ -22,7 +22,7 @@ pipeline {
         stage('Deploy Staging') {
             input "Deploy to Staging?"
         }
-        stage('Deploy to Staging')
+        stage('Deploy to Staging') {
             steps {
                 echo 'deploy staging ...' 
             }
@@ -30,7 +30,7 @@ pipeline {
         stage('Deploy Prod') {
             input "Deploy to Production?"
         }
-        stage('Deploy to Production')
+        stage('Deploy to Production') {
             steps {
                 echo 'deploy prod ...' 
             }
