@@ -27,8 +27,9 @@ pipeline {
         stage('Deploy Staging') {
             when {
                 expression {
-                    GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim().tokenize('/')
-                    return (GIT_BRANCH == 'release')
+                    GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+                    GIT_BRANCH_PREFIX = GIT_BRANCH.tokenize('/')[0]
+                    return (GIT_BRANCH_PREFIX == 'release')
                 }
             }
             input {
@@ -42,8 +43,9 @@ pipeline {
         stage('Deploy Production') {
             when {
                 expression {
-                    GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim().tokenize('/')
-                    return (GIT_BRANCH == 'release')
+                    GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+                    GIT_BRANCH_PREFIX = GIT_BRANCH.tokenize('/')[0]
+                    return (GIT_BRANCH_PREFIX == 'release')
                 }
             }
             input {
