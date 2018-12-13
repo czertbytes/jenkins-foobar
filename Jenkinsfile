@@ -29,6 +29,7 @@ pipeline {
                 expression {
                     GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
                     GIT_BRANCH_PREFIX = GIT_BRANCH.tokenize('/')[0]
+                    echo GIT_BRANCH_PREFIX
                     return (GIT_BRANCH_PREFIX == 'release')
                 }
             }
@@ -45,6 +46,7 @@ pipeline {
                 expression {
                     GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
                     GIT_BRANCH_PREFIX = GIT_BRANCH.tokenize('/')[0]
+                    echo GIT_BRANCH_PREFIX
                     return (GIT_BRANCH_PREFIX == 'release')
                 }
             }
