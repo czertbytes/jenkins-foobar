@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Deploy Production') {
             input {
-                message "Should we deploy to Staging?"
+                message "Should we deploy to Production?"
                 ok "Yes, we should."
             }
             steps {
