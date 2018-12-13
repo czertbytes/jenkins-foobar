@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Deploy Staging') {
             when {
-                branch 'release/.*'
+                expression { BRANCH_NAME ==~ /(release\/*)/ }
             }
             input {
                 message "Should we deploy to Staging?"
@@ -38,7 +38,7 @@ pipeline {
         }
         stage('Deploy Production') {
             when {
-                branch 'release/.*'
+                expression { BRANCH_NAME ==~ /(release\/*)/ }
             }
             input {
                 message "Should we deploy to Production?"
