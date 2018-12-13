@@ -26,6 +26,7 @@ pipeline {
         }
         stage('Deploy Staging') {
             when {
+                beforeInput true
                 tag "release-*"
             }
             input {
@@ -38,6 +39,7 @@ pipeline {
         }
         stage('Deploy Production') {
             when {
+                beforeInput true
                 tag "release-*"
             }
             input {
