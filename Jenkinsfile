@@ -20,17 +20,19 @@ pipeline {
             }
         }
         stage('Deploy Staging') {
-            input "Deploy to Staging?"
-        }
-        stage('Deploy to Staging') {
+            input {
+                message "Should we deploy to Staging?"
+                ok "Yes, we should."
+            }
             steps {
                 echo 'deploy staging ...' 
             }
         }
-        stage('Deploy Prod') {
-            input "Deploy to Production?"
-        }
-        stage('Deploy to Production') {
+        stage('Deploy Production') {
+            input {
+                message "Should we deploy to Staging?"
+                ok "Yes, we should."
+            }
             steps {
                 echo 'deploy prod ...' 
             }
