@@ -27,7 +27,7 @@ pipeline {
         stage('Deploy Staging') {
             when {
                 beforeInput true
-                tag pattern: "release-\\d+", comparator: "REGEXP"
+                tag "release-*"
             }
             input {
                 message "Should we deploy to Staging?"
@@ -40,7 +40,7 @@ pipeline {
         stage('Deploy Production') {
             when {
                 beforeInput true
-                tag pattern: "release-\\d+", comparator: "REGEXP"
+                tag "release-*"
             }
             input {
                 message "Should we deploy to Production?"
