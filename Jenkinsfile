@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Deploy Staging') {
             when {
-                expression { BRANCH_NAME ==~ /(release\/*)/ }
+                tag "release-*"
             }
             input {
                 message "Should we deploy to Staging?"
@@ -38,7 +38,7 @@ pipeline {
         }
         stage('Deploy Production') {
             when {
-                expression { BRANCH_NAME ==~ /(release\/*)/ }
+                tag "release-*"
             }
             input {
                 message "Should we deploy to Production?"
