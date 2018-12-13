@@ -1,8 +1,10 @@
 pipeline {
-    stages {
+    agent {
+        docker { image 'alpine:latest' }
+    }
 
+    stages {
         stage('Clone') {
-            docker { image 'alpine:latest' }
             steps {
                 echo 'Hello world!' 
             }
