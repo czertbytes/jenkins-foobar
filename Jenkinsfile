@@ -19,7 +19,18 @@ pipeline {
                 echo 'package ...' 
             }
         }
+        stage('Deploy Develop') {
+            steps {
+                echo 'deploy staging ...' 
+            }
+        }
         stage('Deploy Staging') {
+            when {
+                expression {
+                    GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim().tokenize('/')
+                    return !(GIT_BRANCH == 'release')
+                }
+            }
             input {
                 message "Should we deploy to Staging?"
                 ok "Yes, we should."
@@ -29,6 +40,12 @@ pipeline {
             }
         }
         stage('Deploy Production') {
+            when {
+                expression {
+                    GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim().tokenize('/')
+                    return !(GIT_BRANCH == 'release')
+                }
+            }
             input {
                 message "Should we deploy to Production?"
                 ok "Yes, we should."
